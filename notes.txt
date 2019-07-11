@@ -20,3 +20,28 @@ RabbitMQ it is a robust messaging system for builiding applications in a
 distrubutedn manner it basically allows you to communicate between 
 applications or proccesses using messages instead of other protocols like
 HTTP or any other remote procedure calls that you may have done in the past.
+
+How to install RabbitMQ ?
+For Mac OS 
+open terminal (copy n paste the line below)
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+$ brew -v
+$ brew update
+$ brew install rabbitmq
+$ brew services start rabbitmq (to start rabbitmq server)
+Now find url http://localhost:27651 in the terminal (Management Plugin enabled by default at http://localhost:27651)
+open web brower and copy paste the url and login with default username guest and password guest 
+$ brew services stop rabbitmq (to stop rabbitmq server)
+
+How does the RabitMQ work ?
+- It's a message broker that implement "AMQP" (Advansed Message Queuing Protocol) 
+- Produer ---- exchange ------- queue ---- Consumer
+- Produer send message to exchange, exchange forwards message to queue, and Consumer recieves message from queue.
+- Produer have a routing key and exchange connect to queues by having binding key 
+- To send a message the producer need to specify a routing key how an exchange compares the two keys depend on type of the exchange. 
+- There are four different types of exchange:-
+1. Fanout exchange - ignores the routing queue and send meassage to all the queues it knows about.
+2. Direct exchange - it send the message where the routing key is the same as binding key
+3. Topic exchange  - allows partial matches of keys
+4. Header exchange - used message header instead of routing key
+5. Default/Nameless exchange - compaires the routing key with the queue name and not the binding key 
